@@ -1,12 +1,12 @@
 import {validateString, vAvg, checkAvg} from './validate.js';
 import {paintCard,paintCard2,addStudent,addProfesor,modalAlert} from './paint.js'
-
 const btnAgregar = document.getElementById('btnAgregar');
 const btnMostrar = document.getElementById('btnMostrar');
-
-const form=document.getElementById('miForm');
-
-
+const seleccion = document.querySelector('#opcion');
+const labelProfession= document.querySelector('#prof');
+const inputProfession= document.querySelector('#profession');
+const labelPromedio= document.querySelector('#prom');
+const inputPromedio= document.querySelector('#promedio');
 /* Generar eventos
     1. Colocando el metodo en el atributo onlclick, onmouseover, onmouseout de la etiqueta
 
@@ -23,10 +23,43 @@ const form=document.getElementById('miForm');
     3. Mediante el addEven......
 */
 
-    
+//remuve para borrar/cambia los imput segun seleccion  evento onchange
+seleccion.onchange = function () {
+    let op = document.querySelector('#opcion').value;
+    if(op==='profesorOption'){
+        document.querySelector('#prom').innerHTML="edad";
+        if(labelProfession.classList.contains('oculto_label')){
+            labelProfession.classList.remove('oculto_label');
+            labelProfession.classList.add('labelVisible');
+        }
+        if(inputProfession.classList.contains('oculto')){
+            inputProfession.classList.remove('oculto');
+            inputProfession.classList.add('buscarVisible');
+        }
+        if(labelPromedio.classList.contains('oculto_label')){
+            labelPromedio.classList.remove('oculto_label');
+            labelPromedio.classList.add('labelVisible');
+        }
+        if(inputPromedio.classList.contains('oculto')){
+            inputPromedio.classList.remove('oculto');
+            inputPromedio.classList.add('buscarVisible');
+        }
+    }
+    if(op==='estudiante'){
+        document.querySelector('#prom').innerHTML="Promedio";
+        if(labelPromedio.classList.contains('oculto_label')){
+            labelPromedio.classList.remove('oculto_label');
+            labelPromedio.classList.add('labelVisible');
+        }
+        if(inputPromedio.classList.contains('oculto')){
+            inputPromedio.classList.remove('oculto');
+            inputPromedio.classList.add('buscarVisible');
+        }
+    }
 
-
-
+}
+   
+//evento onclick
 btnAgregar.onclick = function () {
     const name = document.getElementById('nombre').value;
     const lastName = document.getElementById('apellido').value;
@@ -35,12 +68,12 @@ btnAgregar.onclick = function () {
     const profession = document.getElementById('profession').value;
     const nombre = document.getElementById('nombre').value;
     const apellido = document.getElementById('apellido').value;
-
-    // console.log(`${name} ${lastName} ${avg} ${op}`);
+    const edad = document.getElementById('promedio').value;
     if(op==='estudiante'){
         if (validateString(name) && validateString(lastName) && op !=0){
             if ((!isNaN(avg)) && (vAvg(avg))){
             addStudent(name,lastName,avg)
+            document.getElementsByClassName("control").value = "";
         } else {
             document.querySelector('#promedio').value= "";
             modalAlert("Promedio Invalido");
@@ -50,8 +83,9 @@ btnAgregar.onclick = function () {
     }
 } else if (op === 'profesorOption') {
     if (validateString(nombre) && validateString(apellido) && op !=0){
-            addProfesor(nombre,apellido,profession)
-            
+            addProfesor(nombre,apellido,profession,edad)
+             
+
             
         }
     } else {
@@ -60,25 +94,37 @@ btnAgregar.onclick = function () {
         document.querySelector('#profession').value="";
         modalAlert("Datos invalidos, revisar campos");
     }
-    
-    form.addEventListener('DOMContentLoaded', function(){
-        let formulario = document.getElementById('form');
-        formulario.addEventListener('submit', function() {
-          formulario.reset();
-        });
-    });        
-}
 
+                 
+}
+//muestra en pantalla lo ingresado
 btnMostrar.addEventListener('click', function(){
     const op = document.getElementById('opcion').value;
     if(op=='estudiante'){
     paintCard("ESTUDIANTE");
     }else if(op=='profesorOption'){
     paintCard2("PROFESORES");}
-    
+
+    if(op!=0) {
+        if(labelPromedio.classList.contains('labelVisible')){
+            labelPromedio.classList.remove('labelVisible');
+            labelPromedio.classList.add('oculto_label');
+        }
+        if(inputPromedio.classList.contains('buscarVisible')){
+            inputPromedio.classList.remove('buscarVisible');
+            inputPromedio.classList.add('oculto');
+        }
+        if(labelProfession.classList.contains('labelVisible')){
+            labelProfession.classList.remove('labelVisible');
+            labelProfession.classList.add('oculto_label');
+        }
+        if(inputProfession.classList.contains('buscarVisible')){
+            inputProfession.classList.remove('buscarVisible');
+            inputProfession.classList.add('oculto');
+        }
+    }
+
+    document.getElementById("miForm").reset();
 });
 
-form.addEventListener("submit",function(event){
-    let formulario = document.getElementById('miForm');
-    form.reset()
-});
+

@@ -38,18 +38,18 @@ body {
     padding: 25px 10 px;
     text-align: center;
 }
-.form>input,label,button,select{
+.form>.control,.controlLabel,button,select{
     display: inline-block;
     width: 80%;
     margin: 3% 0;
     font-size: 20px;
-}.form>input{
+}.form>.control{
     padding: 10px 2px;
     border: none;
     border-bottom: 1px solid  #f25757;
     outline: none;   
 }
-.form>label{
+.form>.controlLabel{
     text-align: left;
     padding: 5px;
 }
@@ -85,14 +85,26 @@ body {
 .card .title-card{
     padding: 2%;
 }
+.card .title-card2{
+    padding: 2%;
+}
 .card .text-promedio{
     font-size: 20px;
     color: #f25757;
 }
-.text-aprobado{
+.card .profesion{
+    font-size: 20px;
+    color: #f25757;
+}
+.text-aprobado {
     font-size: 24px;
     padding: 2% 0;
 }
+.lead{
+    font-size: 24px;
+    padding: 2% 0;
+}
+
 .card .btnRegistrar{
     background: #f2db63;
     background: linear-gradient(top, #f2db63, #f2b366);
@@ -126,6 +138,34 @@ body {
     right: 0;
     top: 0;
 }
+
+.oculto_label{    
+    display: none;
+}
+
+.oculto{
+    width: 0 !important;
+    padding: 0 !important;
+}
+.buscarVisible{
+    display: inline-block;
+    width: 80%;
+    margin: 3% 0;
+    font-size: 20px;
+    padding: 10px 2px;
+    border: none;
+    border-bottom: 1px solid  #f25757;
+    outline: none;  
+}
+.labelVisible{
+    display: inline-block;
+    width: 80%;
+    margin: 3% 0;
+    font-size: 20px;
+    text-align: left;
+    padding: 5px;
+}
+
 /*/////////////////////////////////////////////////////////////////////////////////*/
 @media screen and (max-width:760px) {
     .form{
@@ -142,7 +182,7 @@ body {
         border: 2px solid #40b129;
         padding: 15px 5px;
     }
-    .form > input,label,button,select {
+    .form > .controlLabel,.control,button,select {
         margin: 2% 0;
         font-size: 16px;
     }

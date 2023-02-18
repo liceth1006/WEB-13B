@@ -22,7 +22,7 @@ const paintCard = (typ) => {
     }
     cardE.appendChild(fragment);
 };
-
+//tarjeta profesor
 const paintCard2 = (typ2) => {
     typ2 = typ2.toUpperCase();
     const fragment = document.createDocumentFragment();
@@ -32,6 +32,7 @@ const paintCard2 = (typ2) => {
             const cloneTemp = templateProfesor.cloneNode(true);
             cloneTemp.querySelector('.title-card2').innerHTML = "Datos del <i>profesor</i>.";
             cloneTemp.querySelector('.data-card2').innerHTML = `NOMBRE: ${i.nomp.toUpperCase()} APELLIDOS: ${i.apep.toUpperCase()}`;
+            cloneTemp.querySelector(`.lead`).innerHTML = `EDAD:${(i.edad)}`;//edi
             cloneTemp.querySelector('.profesion').innerHTML = `PROFESION ES: ${i.prof.toUpperCase()}`;
             fragment.appendChild(cloneTemp);
         }
@@ -52,18 +53,19 @@ const addStudent = (name,lastName,avg) => {
     modalAlert("Se agrego el estudiante")
 }
 //adicionar los profesores
-const addProfesor = (nombre,apellido,profession) => {
+const addProfesor = (nombre,apellido,profession,age) => {
     //Objeto literal de JS
     let profe = {
         nomp: nombre,
         apep: apellido,
+        edad: age,//edi
         prof: profession
     }
     profesor.push(profe);
     modalAlert("Se agrego el profesor")
 }
 
-//modal estudiante
+//modal 
 const modalAlert = (cad) => {
     const alerta = document.createElement('div');
     const texto = document.createElement('p');
